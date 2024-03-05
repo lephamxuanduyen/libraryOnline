@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<h3>Book Details</h3>
+<hr>
+<span class='text-info'>Title: </span>
+<span>{{ book.title }}</span>
+<br>
+
+<span class='text-info'>Publisher: </span>
+<span>{{ book.publisher }}</span>
+<br>
+
+<span class='text-info'>Publication Date: </span>
+<span>{{ book.publication_date }}</span>
+<br>
+
+    {% if not reviews %}
+    <hr>
+    <h3>Be the first one to write a review.</h3>
+    {% else %}
+    <span class='text-info'>Overall Rating: </span>
+    <span class='badge badge-primary badge-pill'>{{ book_rating }}</span>
+    <br>
+    <hr>
+    <h3>Review Comments</h3>
+    <ul class='list-group'>
+        {% for item in reviews %}
+        <li class='list-group-item'>
+            <span class='text-info'>Review comment: </span>
+            <span>{{ item.content }}</span>
+            <br>
+
+            <span class='text-info'>Create on: </span>
+            <span>{{ item.date_create }}</span>
+            <br>
+
+            <span class='text-info'>Modifield on: </span>
+            <span>{{ item.date_edited }}</span>
+            <br>
+            
+            <span class='text-info'>Rating: </span>
+            <span>{{ item.rating }}</span>
+            <br>
+
+            <span class='text-info'>Creator: </span>
+            <span>{{ item.creator.usename }}</span>
+            <br>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
+
+
