@@ -3,6 +3,12 @@
 <br>
 <h3>Book Details</h3>
 <hr>
+{% if book.cover %}
+    <img src="{{ book.cover.url }}"> <br/>
+    <span class='text-info'>Sample: </span>
+    <span><a href="{{ book.sample.url }}">Download</a></span>
+    <br>
+{% endif %}
 <span class='text-info'>Title: </span>
 <span>{{ book.title }}</span>
 <br>
@@ -47,9 +53,12 @@
             <span>{{ item.creator.usename }}</span>
             <br>
         </li>
+        <a class='text-info' href={% url 'review_edit' book.pk item.pk %}>Edit Review</a>
         {% endfor %}
     </ul>
     {% endif %}
+    <a class="btn btn-primary" href={% url 'review_create' book.pk %}>Add review</a>
+    <a class="btn btn-primary" href={% url 'book_media' book.pk %}>Media</a>
 {% endblock %}
 
 
